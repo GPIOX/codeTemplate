@@ -4,10 +4,15 @@
  * @Author: Cai Weichao
  * @Date: 2022-03-12 20:23:23
  * @LastEditors: Cai Weichao
- * @LastEditTime: 2022-03-13 13:10:05
+ * @LastEditTime: 2022-03-13 13:15:20
 -->
 # Readme
 This is a personally created pytorch based code template, which will be updated from time to time 
+
+## Install dependencies 
+``` 
+pip install reqrequirements.txt
+```
 
 ## Structure 
 In this template, there are the following folders and files:
@@ -26,7 +31,7 @@ In this template, there are the following folders and files:
   + txtlogger.py : import logging here and initialize 
 + main.py : Call main.py, the program starts to execute, For specific parameters, see ./utils/parser.py
   + ```python
-       python main.py [argument]
+    python main.py [argument]
     ```
 + train.py : Defines classes related to training models 
 
