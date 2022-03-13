@@ -4,7 +4,7 @@ version:
 Author: Cai Weichao
 Date: 2022-03-10 11:09:27
 LastEditors: Cai Weichao
-LastEditTime: 2022-03-13 12:22:35
+LastEditTime: 2022-03-13 13:13:24
 '''
 
 from model.model import Model
@@ -164,7 +164,7 @@ class TrainProcessor:
             lr = lr_adjust[epoch]
             for param_group in self.optimizer.param_groups:
                 param_group['lr'] = lr
-            print('Updating learning rate to {}'.format(lr))
+            self.txt_logger.info('Updating learning rate to {}'.format(lr))
 
     def load_logger(self):
         # tensorboard config
