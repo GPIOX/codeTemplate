@@ -4,7 +4,7 @@ version:
 Author: Cai Weichao
 Date: 2022-03-10 11:09:27
 LastEditors: Cai Weichao
-LastEditTime: 2022-03-12 22:24:01
+LastEditTime: 2022-03-13 12:22:35
 '''
 
 from model.model import Model
@@ -46,14 +46,10 @@ class TrainProcessor:
         self.n_valid = int(len(dataset) * val_percent)
         self.n_train = len(dataset) - self.n_valid
         train_set, valid_set = random_split(dataset, [self.n_train, self.n_valid])
-        # or
+        # or, e.g.:
         # transform = transforms.Compose([transforms.ToTensor(), transforms.Resize(size=224)])
         # train_set = datasets.MNIST('./data', train=True, download=True, transform=transform)
         # valid_set  = datasets.MNIST('./data', train=False, download=True, transform=transform)
-
-        # set lenth of tqdm
-        self.n_train = len(train_set)
-        self.n_valid = len(valid_set)
 
         self.data_loader['train'] = DataLoader(train_set,
                                                batch_size=self.arg.batch_size,
@@ -103,7 +99,7 @@ class TrainProcessor:
                 loss_value.append(loss.data.item())
 
                 # update tqdm info                
-                pbar.set_postfix(**{'loss (batch)': loss.item()})  
+                pbar.set_postfix(**{'loss (batch)': f'{loss.item():.4f}'}) 
                 pbar.set_description(f'Epoch [{epoch}/{self.arg.epochs}]')
 
                 # save checkpoint
@@ -120,7 +116,7 @@ class TrainProcessor:
 
             # logger and tensorboard
             self.current_epoch = epoch
-            self.txt_logger.info(f'Epoch {epoch} train loss : {mean_loss}')
+            self.txt_logger.info(f'Epoch {epoch} train loss : {mean_loss:6f}')
             self.train_logger.add_scalar('train_loss', mean_loss, epoch)
             #self.train_logger.add_scalar('train_other_metric', metric_value, epoch)
             
@@ -145,13 +141,13 @@ class TrainProcessor:
                 loss_value.append(loss.data.item())
 
                 # update tqdm info                
-                pbar.set_postfix(**{'loss (batch)': loss.item()})  
+                pbar.set_postfix(**{'loss (batch)': f'{loss.item():.4f}'}) 
                 pbar.set_description(f'Valid')
             
             mean_loss = np.mean(loss_value)
 
             # logger and tensorboard
-            self.txt_logger.info(f'Epoch {self.current_epoch} valid loss : {mean_loss}')
+            self.txt_logger.info(f'Epoch {self.current_epoch} valid loss : {mean_loss:6f}')
             self.valid_logger.add_scalar('valid_loss', mean_loss, self.current_epoch)
             #self.valid_logger.add_scalar('valid_other_metric', metric_value, self.current_epoch)
         
