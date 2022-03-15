@@ -1,3 +1,5 @@
 #忽略文件
-./runs
-./checkpoint/*
+./runs/*
+__pycache__
+checkpoint
+test.ipynb
