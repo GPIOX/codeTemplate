@@ -1,5 +1,5 @@
 #忽略文件
 ./runs/*
 __pycache__
-checkpoint
+checkpoint/*
 test.ipynb
