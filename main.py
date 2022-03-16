@@ -4,7 +4,7 @@ version:
 Author: Cai Weichao
 Date: 2022-03-10 11:09:27
 LastEditors: Cai Weichao
-LastEditTime: 2022-03-12 20:16:12
+LastEditTime: 2022-03-16 22:15:31
 '''
 from utils.parser import BaseParser
 import numpy as np
@@ -26,9 +26,9 @@ def main(args):
         torch.cuda.manual_seed_all(args.seed)
 
     # train    
+    train.txt_logger.info('Train Start')  
     train = TrainProcessor(args=args)
     #train.train()
-    train.txt_logger.info('Start')  
 
 
 if __name__ == '__main__':
