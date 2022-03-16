@@ -5,3 +5,5 @@ __pycache__
 checkpoint/*
 test.ipynb
 *.sh
+runs/*
+utils/__pycache__
