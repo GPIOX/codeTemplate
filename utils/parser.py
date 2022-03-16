@@ -4,7 +4,7 @@ version:
 Author: Cai Weichao
 Date: 2022-03-10 11:25:08
 LastEditors: Cai Weichao
-LastEditTime: 2022-03-12 16:21:44
+LastEditTime: 2022-03-16 22:09:42
 '''
 import argparse
 import yaml
@@ -16,8 +16,7 @@ class BaseParser(object):
         #self.add_other_argument()
 
     def add_other_argument(self, known=False):
-        self.known = False
-        _, unparsed  = self.parser.parse_known_args()
+        self.known = False        
 
         self.parser.add_argument('--seed', type=int, default=42, help='seed')
         self.parser.add_argument('--cfg', type=str, default='./config/config.yaml', help='model config.yaml path')
@@ -26,6 +25,7 @@ class BaseParser(object):
         self.parser.add_argument('--workers', type=int, default=8, help='max dataloader workers')
         self.parser.add_argument('--project', default='./runs/exp', help='save to project/name')
         
+        _, unparsed  = self.parser.parse_known_args()
 
         if len(unparsed) != 0:
             raise SystemExit('Unknown argument: {}'.format(unparsed))
