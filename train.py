@@ -4,7 +4,7 @@ version:
 Author: Cai Weichao
 Date: 2022-03-10 11:09:27
 LastEditors: Cai Weichao
-LastEditTime: 2022-03-18 16:46:39
+LastEditTime: 2022-03-18 22:56:45
 '''
 
 from model.model import Model
@@ -105,7 +105,7 @@ class TrainProcessor:
             # save checkpoint
             if epoch % 5 == 0:
                 checkpoint_dict = {
-                    'mdoel': self.model.state_dict(),
+                    'model': self.model.state_dict(),
                     'optimizer': self.optimizer.state_dict(),
                     'epoch': epoch
                 }
