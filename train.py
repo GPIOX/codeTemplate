@@ -4,7 +4,7 @@ version:
 Author: Cai Weichao
 Date: 2022-03-10 11:09:27
 LastEditors: Cai Weichao
-LastEditTime: 2022-03-13 13:13:24
+LastEditTime: 2022-03-18 16:33:51
 '''
 
 from model.model import Model
@@ -110,7 +110,7 @@ class TrainProcessor:
                         'epoch': epoch
                     }
 
-                    torch.save(checkpoint_dict, f'./checkpoint/ckpt_{epoch}.pth')
+                    torch.save(checkpoint_dict, f'{self.checkpoint}/ckpt_{epoch}.pth')
 
             mean_loss = np.mean(loss_value)
 
@@ -209,6 +209,10 @@ class TrainProcessor:
             path = Path(f"{path}{sep}{n}{suffix}")  # increment path
         if mkdir:
             path.mkdir(parents=True, exist_ok=True)  # make directory
+
+        # checkpoint
+        self.checkpoint = path / 'checkpoint'
+        self.checkpoint.mkdir(parents=True, exist_ok=True)
 
         self.save_dir = str(path)
     
