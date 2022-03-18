@@ -4,14 +4,14 @@
  * @Author: Cai Weichao
  * @Date: 2022-03-12 20:23:23
  * @LastEditors: Cai Weichao
- * @LastEditTime: 2022-03-13 13:15:20
+ * @LastEditTime: 2022-03-18 21:08:00
 -->
 # Readme
 This is a personally created pytorch based code template, which will be updated from time to time 
 
 ## Install dependencies 
 ``` 
-pip install reqrequirements.txt
+pip install requirements.txt
 ```
 
 ## Structure 
