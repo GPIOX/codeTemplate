@@ -4,7 +4,7 @@ version:
 Author: Cai Weichao
 Date: 2022-03-10 11:09:27
 LastEditors: Cai Weichao
-LastEditTime: 2022-03-18 22:56:45
+LastEditTime: 2022-06-17 21:11:19
 '''
 
 from model.model import Model
@@ -32,6 +32,7 @@ class TrainProcessor:
         self.load_data()
         self.load_optimizer()
         self.load_loss_func()
+        self.save_current_setting()
 
     def load_data(self):
         self.data_loader = dict()
@@ -60,6 +61,17 @@ class TrainProcessor:
                                                batch_size=self.arg.batch_size,
                                                num_workers=self.arg.workers,
                                                shuffle=False)
+
+    def save_current_setting(self):
+        # save run settings
+        with open(f'{self.save_dir}/setting.yaml', 'w') as f:
+            yaml.safe_dump(vars(self.arg), f, sort_keys=False)
+
+        with open("./train.py", "r") as f:
+            train_py = f.read()
+
+        with open(f"{self.save_dir}/train.py", "w") as f:
+            f.write(train_py)
 
     def train(self):
         # save run settings
